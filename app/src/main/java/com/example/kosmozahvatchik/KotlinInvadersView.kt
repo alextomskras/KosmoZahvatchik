@@ -1,16 +1,22 @@
 package com.example.kosmozahvatchik
 
 import android.content.Context
+import android.content.Intent
 import android.content.SharedPreferences
 import android.graphics.*
-import android.view.SurfaceView
+import android.support.v4.content.ContextCompat.startActivity
 import android.util.Log
 import android.view.MotionEvent
+import android.view.SurfaceView
 
 class KotlinInvadersView(context: Context,
                          private val size: Point)
     : SurfaceView(context),
         Runnable {
+
+    companion object {
+        val TAG = "KotlinInvadersView"
+    }
 
     // For making a noise
     private val soundPlayer = SoundPlayer(context)
@@ -265,6 +271,7 @@ class KotlinInvadersView(context: Context,
                         playerBullet.isActive = false
                         Invader.numberOfInvaders --
                         score += 10
+                        //Check score is high over HighScore
                         if(score > highScore){
                             highScore = score
                         }
@@ -294,10 +301,12 @@ class KotlinInvadersView(context: Context,
             if (bullet.isActive) {
                 for (brick in bricks) {
                     if (brick.isVisible) {
+                        //Check intersect coordinates
                         if (RectF.intersects(bullet.position, brick.position)) {
                             // A collision has occurred
                             bullet.isActive = false
                             brick.isVisible = false
+                            //Play sound
                             soundPlayer.playSound(SoundPlayer.damageShelterID)
                         }
                     }
@@ -323,6 +332,7 @@ class KotlinInvadersView(context: Context,
         // Has an invader playerBullet hit the player ship
         for (bullet in invadersBullets) {
             if (bullet.isActive) {
+                //Check intersect coordinates
                 if (RectF.intersects(playerShip.position, bullet.position)) {
                     bullet.isActive = false
                     lives --
@@ -331,6 +341,7 @@ class KotlinInvadersView(context: Context,
                     // Is it game over?
                     if (lives == 0) {
                         lost = true
+
                         break
                     }
                 }
@@ -345,6 +356,13 @@ class KotlinInvadersView(context: Context,
             invaders.clear()
             bricks.clear()
             invadersBullets.clear()
+            Log.d(TAG, "Try to show GameOver activity")
+
+            // launch the login activity somehow
+            val contt = context.applicationContext
+            val intent = Intent(contt, GameOver::class.java)
+            startActivity(context, intent, null)
+
             prepareLevel()
         }
     }
