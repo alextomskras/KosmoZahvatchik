@@ -1,8 +1,10 @@
 package com.example.kosmozahvatchik
 
+import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import android.support.v7.app.AppCompatActivity
+import android.util.Log
 import android.view.View
 import kotlinx.android.synthetic.main.activity_game_over.*
 
@@ -59,7 +61,13 @@ class GameOver : AppCompatActivity() {
         // Upon interacting with UI controls, delay any scheduled hide()
         // operations to prevent the jarring behavior of controls going away
         // while interacting with the UI.
-        exit_button.setOnTouchListener(mDelayHideTouchListener)
+        exit_button.setOnClickListener {
+            Log.d(this.toString(), "Try to catch EXIT_GAME")
+
+            // launch the StartGAME activity somehow
+            val intent = Intent(this, KotlinInvadersActivity::class.java)
+            startActivity(intent)
+        }
     }
 
     override fun onPostCreate(savedInstanceState: Bundle?) {
