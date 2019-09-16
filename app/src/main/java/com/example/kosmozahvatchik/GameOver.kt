@@ -55,6 +55,10 @@ class GameOver : AppCompatActivity() {
 
         mVisible = true
 
+//        val youscore = txt_gameover_you_score
+
+
+
         // Set up the user interaction to manually show or hide the system UI.
         game_over_content.setOnClickListener { toggle() }
 
@@ -73,6 +77,9 @@ class GameOver : AppCompatActivity() {
     override fun onPostCreate(savedInstanceState: Bundle?) {
         super.onPostCreate(savedInstanceState)
 
+        var txtyouscore = "${txt_gameover_you_score.text} 888".toString()
+        Log.d(this.toString(), "!!!!+$txtyouscore")
+        txt_gameover_you_score.text = txtyouscore.toString()
         // Trigger the initial hide() shortly after the activity has been
         // created, to briefly hint to the user that UI controls
         // are available.

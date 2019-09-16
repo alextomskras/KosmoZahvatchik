@@ -15,7 +15,7 @@
             android:label="@string/title_activity_game_over"
             android:theme="@style/FullscreenTheme"></activity>
         <activity
-            android:name=".FullscreenActivity"
+            android:name=".StartActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/title_activity_fullscreen"
             android:theme="@style/FullscreenTheme">
