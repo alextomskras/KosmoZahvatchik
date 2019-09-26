@@ -56,12 +56,17 @@ class GameOver : AppCompatActivity() {
 
         mVisible = true
 
-        val ss: String = intent.getStringExtra("hi-score")
-        Log.d(this.toString(), "!!22+$ss")
+        val hiScore: String = intent.getStringExtra("hi-score")
+        Log.d(this.toString(), "!!22+$hiScore")
 
-        var txtyouscore = "${txt_gameover_you_score.text} $ss".toString()
+        val youScore: String = intent.getStringExtra("you-score")
+        Log.d(this.toString(), "!!221+$youScore")
+
+        var txtyouscore = "${txt_gameover_you_score.text} $youScore".toString()
         Log.d(this.toString(), "!!!!+$txtyouscore")
+
         txt_gameover_you_score.text = txtyouscore.toString()
+        txt_HI_you_score.text = "${txt_HI_you_score.text} $hiScore".toString()
 //        val youscore = txt_gameover_you_score
 
 

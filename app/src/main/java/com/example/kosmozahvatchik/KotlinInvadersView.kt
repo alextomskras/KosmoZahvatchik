@@ -351,6 +351,7 @@ class KotlinInvadersView(context: Context,
         if (lost) {
             paused = true
             lives = 3
+            var puTscore = score
             score = 0
             waves = 1
             invaders.clear()
@@ -362,6 +363,8 @@ class KotlinInvadersView(context: Context,
             val contt = context.applicationContext
             val intent = Intent(contt, GameOver::class.java)
             intent.putExtra("hi-score", highScore.toString())
+            intent.putExtra("you-score", puTscore.toString())
+            puTscore = 0
             Log.d(TAG, "Try send EXTRA $intent")
             startActivity(context, intent, null)
 
