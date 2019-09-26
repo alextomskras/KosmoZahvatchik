@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.example.kosmozahvatchik">
 
     <application
@@ -10,15 +11,19 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
+            android:screenOrientation="landscape"
             android:name=".GameOver"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/title_activity_game_over"
-            android:theme="@style/FullscreenTheme"></activity>
+            android:theme="@style/FullscreenTheme"
+            tools:ignore="LockedOrientationActivity"></activity>
         <activity
+            android:screenOrientation="landscape"
             android:name=".StartActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/title_activity_fullscreen"
-            android:theme="@style/FullscreenTheme">
+            android:theme="@style/FullscreenTheme"
+            tools:ignore="LockedOrientationActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -28,7 +33,10 @@
         <activity
             android:name=".KotlinInvadersActivity"
             android:screenOrientation="landscape"
-            android:theme="@android:style/Theme.NoTitleBar.Fullscreen"></activity>
+            android:theme="@android:style/Theme.NoTitleBar.Fullscreen"
+            tools:ignore="LockedOrientationActivity">
+
+        </activity>
     </application>
 
 </manifest>
