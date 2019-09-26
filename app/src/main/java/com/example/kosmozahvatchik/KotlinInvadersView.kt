@@ -358,9 +358,11 @@ class KotlinInvadersView(context: Context,
             invadersBullets.clear()
             Log.d(TAG, "Try to show GameOver activity")
 
-            // launch the login activity somehow
+            // launch the GameOver activity somehow
             val contt = context.applicationContext
             val intent = Intent(contt, GameOver::class.java)
+            intent.putExtra("hi-score", highScore.toString())
+            Log.d(TAG, "Try send EXTRA $intent")
             startActivity(context, intent, null)
 
             prepareLevel()

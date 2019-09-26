@@ -27,7 +27,7 @@
         android:id="@+id/txt_gameover_you_score"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="420sp"
+        android:layout_marginTop="260sp"
         android:gravity="center"
         android:keepScreenOn="true"
         android:text="@string/you_win"

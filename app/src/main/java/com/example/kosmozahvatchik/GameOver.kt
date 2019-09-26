@@ -1,5 +1,6 @@
 package com.example.kosmozahvatchik
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
@@ -55,6 +56,12 @@ class GameOver : AppCompatActivity() {
 
         mVisible = true
 
+        val ss: String = intent.getStringExtra("hi-score")
+        Log.d(this.toString(), "!!22+$ss")
+
+        var txtyouscore = "${txt_gameover_you_score.text} $ss".toString()
+        Log.d(this.toString(), "!!!!+$txtyouscore")
+        txt_gameover_you_score.text = txtyouscore.toString()
 //        val youscore = txt_gameover_you_score
 
 
@@ -76,15 +83,30 @@ class GameOver : AppCompatActivity() {
 
     override fun onPostCreate(savedInstanceState: Bundle?) {
         super.onPostCreate(savedInstanceState)
+        getHIscores()
 
-        var txtyouscore = "${txt_gameover_you_score.text} 888".toString()
-        Log.d(this.toString(), "!!!!+$txtyouscore")
-        txt_gameover_you_score.text = txtyouscore.toString()
+
+
+
         // Trigger the initial hide() shortly after the activity has been
         // created, to briefly hint to the user that UI controls
         // are available.
         delayedHide(100)
     }
+
+    private fun getHIscores(): String {
+        val contt = this.applicationContext
+        val prefs = contt.getSharedPreferences(
+            "Kotlin Invaders",
+            Context.MODE_PRIVATE
+        )
+
+        var chkHighScore = prefs.getInt("highScore", 0)
+        return chkHighScore.toString()
+
+
+    }
+
 
     private fun toggle() {
         if (mVisible) {
