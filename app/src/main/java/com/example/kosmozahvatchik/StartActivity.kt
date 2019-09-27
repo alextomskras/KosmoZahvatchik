@@ -1,5 +1,8 @@
 package com.example.kosmozahvatchik
 
+import android.animation.Animator
+import android.animation.AnimatorListenerAdapter
+import android.animation.ValueAnimator
 import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
@@ -17,7 +20,9 @@ import kotlinx.android.synthetic.main.activity_fullscreen.*
 class StartActivity : AppCompatActivity() {
 
 
-
+    private lateinit var mcontentView: View
+    private lateinit var mloadingView: View
+    private var shortAnimationDuration: Int = 0
 
 
 
@@ -61,6 +66,8 @@ class StartActivity : AppCompatActivity() {
 
 
         setContentView(R.layout.activity_fullscreen)
+
+
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
         mVisible = true
@@ -76,8 +83,20 @@ class StartActivity : AppCompatActivity() {
 
             // launch the StartGAME activity somehow
             val intent = Intent(this, KotlinInvadersActivity::class.java)
+            transFlow()
             startActivity(intent)
         }
+        mcontentView = findViewById(R.id.fullscreen_content_controls)
+        mloadingView = findViewById(R.id.fullscreen_content)
+
+        // Initially hide the content view.
+        mcontentView.visibility = View.GONE
+
+        // Retrieve and cache the system's default "short" animation time.
+        shortAnimationDuration = resources.getInteger(android.R.integer.config_shortAnimTime)
+
+
+
     }
 
     override fun onPostCreate(savedInstanceState: Bundle?) {
@@ -93,8 +112,24 @@ class StartActivity : AppCompatActivity() {
         if (mVisible) {
             hide()
         } else {
+//            crossfade()
+
             show()
         }
+    }
+
+    private fun transFlow() {
+        val animator = ValueAnimator.ofFloat(0f, 1700f)
+        animator.duration = 1000
+        animator.start()
+
+        animator.addUpdateListener(object : ValueAnimator.AnimatorUpdateListener {
+            override fun onAnimationUpdate(animation: ValueAnimator) {
+                val animatedValue = animation.animatedValue as Float
+                mloadingView.translationX = animatedValue
+                mloadingView.translationX = animatedValue
+            }
+        })
     }
 
     private fun hide() {
@@ -128,6 +163,34 @@ class StartActivity : AppCompatActivity() {
         mHideHandler.removeCallbacks(mHideRunnable)
         mHideHandler.postDelayed(mHideRunnable, delayMillis.toLong())
     }
+
+    private fun crossfade() {
+        mcontentView.apply {
+            // Set the content view to 0% opacity but visible, so that it is visible
+            // (but fully transparent) during the animation.
+            alpha = 0f
+            visibility = View.VISIBLE
+
+            // Animate the content view to 100% opacity, and clear any animation
+            // listener set on the view.
+            animate()
+                .alpha(1f)
+                .setDuration(shortAnimationDuration.toLong())
+                .setListener(null)
+        }
+        // Animate the loading view to 0% opacity. After the animation ends,
+        // set its visibility to GONE as an optimization step (it won't
+        // participate in layout passes, etc.)
+        mloadingView.animate()
+            .alpha(0f)
+            .setDuration(shortAnimationDuration.toLong())
+            .setListener(object : AnimatorListenerAdapter() {
+                override fun onAnimationEnd(animation: Animator) {
+                    mloadingView.visibility = View.GONE
+                }
+            })
+    }
+
 
     companion object {
         /**
