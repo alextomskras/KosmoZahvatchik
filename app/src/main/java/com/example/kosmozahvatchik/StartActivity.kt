@@ -80,7 +80,7 @@ class StartActivity : AppCompatActivity() {
 
         val soundPlayer = SoundPlayer(this)
 
-        soundPlayer.playSound(SoundPlayer.damageShelterID)
+        soundPlayer.playSound(SoundPlayer.startMusicID)
 
         // Set up the user interaction to manually show or hide the system UI.
         fullscreen_content.setOnClickListener { toggle() }
