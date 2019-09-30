@@ -2,11 +2,13 @@ package com.example.kosmozahvatchik
 
 import android.content.Context
 import android.content.Intent
+import android.media.MediaPlayer
 import android.os.Bundle
 import android.os.Handler
 import android.support.v7.app.AppCompatActivity
 import android.util.Log
 import android.view.View
+import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_game_over.*
 
 /**
@@ -14,6 +16,9 @@ import kotlinx.android.synthetic.main.activity_game_over.*
  * status bar and navigation/system bar) with user interaction.
  */
 class GameOver : AppCompatActivity() {
+
+    private lateinit var mediaPlayer: MediaPlayer
+
     private val mHideHandler = Handler()
     private val mHidePart2Runnable = Runnable {
         // Delayed removal of status and navigation bar
@@ -56,6 +61,11 @@ class GameOver : AppCompatActivity() {
 
         mVisible = true
 
+        // Play_MUSIC_on_gameover_screen
+        mediaPlayer = MediaPlayer.create(applicationContext, R.raw.spaceinvaders)
+        mediaPlayer.start()
+        Toast.makeText(this, "media playing", Toast.LENGTH_SHORT).show()
+
         val hiScore: String = intent.getStringExtra("hi-score")
         Log.d(this.toString(), "!!22+$hiScore")
 
@@ -82,6 +92,8 @@ class GameOver : AppCompatActivity() {
 
             // launch the StartGAME activity somehow
             val intent = Intent(this, KotlinInvadersActivity::class.java)
+
+            mediaPlayer.stop()
             startActivity(intent)
         }
     }
