@@ -127,7 +127,7 @@ class StartActivity : AppCompatActivity() {
             override fun onAnimationUpdate(animation: ValueAnimator) {
                 val animatedValue = animation.animatedValue as Float
                 mloadingView.translationX = animatedValue
-                mloadingView.translationX = animatedValue
+                mcontentView.translationX = animatedValue
             }
         })
     }
