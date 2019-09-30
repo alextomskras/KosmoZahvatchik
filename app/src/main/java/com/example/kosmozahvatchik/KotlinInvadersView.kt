@@ -443,10 +443,15 @@ class KotlinInvadersView(context: Context,
     fun pause() {
         playing = false
         try {
-            gameThread.stop()
+
+            Log.d(this.toString(), "Thread interrupted ${gameThread}")
+
+            gameThread.interrupt()
+//            gameThread.stop()
         } catch (e: InterruptedException) {
             Log.e("Error:", "joining thread")
         }
+
 
         val prefs = context.getSharedPreferences(
                 "Kotlin Invaders",
@@ -467,10 +472,34 @@ class KotlinInvadersView(context: Context,
     // If SpaceInvadersActivity is started then
     // start our thread.
     fun resume() {
+//        if (!playing) {
+//            playing = true
+//            prepareLevel()
+//            gameThread.join()
+//        }else   {
+        if (gameThread.isInterrupted) {
+            Log.d(this.toString(), "Thread interrupted ${gameThread}")
+
+        }
+
         playing = true
         prepareLevel()
+        Log.d(this.toString(), "Thread thi gamethread ${gameThread}")
+        val testThread = Thread.currentThread()
+        Log.d(this.toString(), "Thread thi curThread $testThread")
+
+//            if (gameThread == Thread.currentThread()) {
         gameThread.start()
+//            }
+//        }
+
     }
+
+//    fun start() {
+//        playing = true
+//        prepareLevel()
+//        gameThread.start()
+//    }
 
     // The SurfaceView class implements onTouchListener
     // So we can override this method and detect screen touches.

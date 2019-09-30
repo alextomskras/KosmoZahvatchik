@@ -25,6 +25,14 @@ class KotlinInvadersActivity : Activity() {
         setContentView(kotlinInvadersView)
     }
 
+
+//    override fun onStart() {
+//        super.onStart()
+//
+//        // Tell the gameView resume method to execute
+//        kotlinInvadersView?.start()
+//    }
+
     // This method executes when the player starts the game
     override fun onResume() {
         super.onResume()
@@ -32,6 +40,7 @@ class KotlinInvadersActivity : Activity() {
         // Tell the gameView resume method to execute
         kotlinInvadersView?.resume()
     }
+
 
     // This method executes when the player quits the game
     override fun onPause() {
