@@ -443,7 +443,7 @@ class KotlinInvadersView(context: Context,
     fun pause() {
         playing = false
         try {
-            gameThread.join()
+            gameThread.stop()
         } catch (e: InterruptedException) {
             Log.e("Error:", "joining thread")
         }

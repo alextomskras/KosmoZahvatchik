@@ -10,6 +10,7 @@ import android.os.Handler
 import android.support.v7.app.AppCompatActivity
 import android.util.Log
 import android.view.View
+import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_fullscreen.*
 
 /**
@@ -80,10 +81,11 @@ class StartActivity : AppCompatActivity() {
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
         mVisible = true
-//          Play_MUSIC_on_start_screen
-//        mediaPlayer = MediaPlayer.create(applicationContext,R.raw.spaceinvaders)
-//        mediaPlayer.start()
-//        Toast.makeText(this,"media playing", Toast.LENGTH_SHORT).show()
+
+        // Play_MUSIC_on_start_screen
+        mediaPlayer = MediaPlayer.create(applicationContext, R.raw.spaceinvaders)
+        mediaPlayer.start()
+        Toast.makeText(this, "media playing", Toast.LENGTH_SHORT).show()
 
 //        var player = MediaPlayer()
 //        try {
@@ -104,12 +106,15 @@ class StartActivity : AppCompatActivity() {
         // Upon interacting with UI controls, delay any scheduled hide()
         // operations to prevent the jarring behavior of controls going away
         // while interacting with the UI.
-        dummy_button.setOnClickListener {
+        start_button.setOnClickListener {
             Log.d(this.toString(), "Try to catch start GAME")
 
             // launch the StartGAME activity somehow
             val intent = Intent(this, KotlinInvadersActivity::class.java)
             transFlow()
+
+            mediaPlayer.stop()
+
             startActivity(intent)
         }
         mcontentView = findViewById(R.id.fullscreen_content_controls)
@@ -123,6 +128,25 @@ class StartActivity : AppCompatActivity() {
 
 
 
+    }
+
+    override fun onResume() {
+        super.onResume()
+
+        mediaPlayer.start()
+
+        // Tell the gameView resume method to execute
+//        kotlinInvadersView?.resume()
+    }
+
+    // This method executes when the player quits the game
+    override fun onPause() {
+        super.onPause()
+
+        mediaPlayer.stop()
+
+        // Tell the gameView pause method to execute
+//        kotlinInvadersView?.pause()
     }
 
     override fun onPostCreate(savedInstanceState: Bundle?) {

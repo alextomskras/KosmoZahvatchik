@@ -40,4 +40,6 @@ class KotlinInvadersActivity : Activity() {
         // Tell the gameView pause method to execute
         kotlinInvadersView?.pause()
     }
+
+
 }
