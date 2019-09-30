@@ -10,7 +10,8 @@ import java.io.IOException
 class SoundPlayer(context: Context) {
 
     // For sound FX
-    private val soundPool: SoundPool = SoundPool(10,
+    private val soundPool: SoundPool = SoundPool(
+        11,
             AudioManager.STREAM_MUSIC,
             0)
 

@@ -59,18 +59,28 @@ class StartActivity : AppCompatActivity() {
         }
         false
     }
+//    private val context:Context = this.applicationContext
+//    private val soundPlayer = SoundPlayer(this)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
 
 
+
+
         setContentView(R.layout.activity_fullscreen)
+
+
 
 
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
         mVisible = true
+
+        val soundPlayer = SoundPlayer(this)
+
+        soundPlayer.playSound(SoundPlayer.damageShelterID)
 
         // Set up the user interaction to manually show or hide the system UI.
         fullscreen_content.setOnClickListener { toggle() }
