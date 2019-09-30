@@ -8,6 +8,6 @@
     <string name="exit_button">RESTART_GAME</string>
 
     <string name="title_activity_game_over">GameOver</string>
-    <string name="you_win">You score:</string>
-    <string name="hiscore">Hi score:</string>
+    <string name="you_win">Your score:</string>
+    <string name="hiscore">Best score:</string>
 </resources>
