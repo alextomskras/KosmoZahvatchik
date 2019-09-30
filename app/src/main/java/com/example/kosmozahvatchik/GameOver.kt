@@ -70,6 +70,7 @@ class GameOver : AppCompatActivity() {
 
         // Play_MUSIC_on_gameover_screen
         mediaPlayer = MediaPlayer.create(applicationContext, R.raw.spaceinvaders)
+        mediaPlayer.isLooping = true
         mediaPlayer.start()
         Toast.makeText(this, "media playing", Toast.LENGTH_SHORT).show()
 
@@ -156,15 +157,22 @@ class GameOver : AppCompatActivity() {
     override fun onResume() {
         super.onResume()
 
-        mediaPlayer.start()
+        if (!mediaPlayer.isPlaying) {
 
+            mediaPlayer.start()
+
+        }
         // Tell the gameView resume method to execute
-//        kotlinInvadersView?.resume()
+
+        //        kotlinInvadersView?.resume()
     }
 
     // This method executes when the player quits the game
     override fun onPause() {
         super.onPause()
+        mediaPlayer.pause()
+        mediaPlayer.reset()
+        mediaPlayer.release()
 
         mediaPlayer.stop()
 
