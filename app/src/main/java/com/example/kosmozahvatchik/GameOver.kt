@@ -1,5 +1,6 @@
 package com.example.kosmozahvatchik
 
+import android.animation.ValueAnimator
 import android.content.Context
 import android.content.Intent
 import android.media.MediaPlayer
@@ -18,6 +19,12 @@ import kotlinx.android.synthetic.main.activity_game_over.*
 class GameOver : AppCompatActivity() {
 
     private lateinit var mediaPlayer: MediaPlayer
+
+    private lateinit var mbuttonView: View
+    private lateinit var mgameoverView: View
+    private lateinit var mHiscoreView: View
+    private lateinit var mYourscoreView: View
+
 
     private val mHideHandler = Handler()
     private val mHidePart2Runnable = Runnable {
@@ -92,10 +99,16 @@ class GameOver : AppCompatActivity() {
 
             // launch the StartGAME activity somehow
             val intent = Intent(this, KotlinInvadersActivity::class.java)
-
+            transFlow()
             mediaPlayer.stop()
             startActivity(intent)
         }
+
+        mbuttonView = findViewById(R.id.fullscreen_content_controls)
+        mgameoverView = findViewById(R.id.game_over_content)
+        mHiscoreView = findViewById(R.id.txt_HI_you_score)
+        mYourscoreView = findViewById(R.id.txt_gameover_you_score)
+
     }
 
     override fun onPostCreate(savedInstanceState: Bundle?) {
@@ -111,6 +124,22 @@ class GameOver : AppCompatActivity() {
         delayedHide(100)
     }
 
+    private fun transFlow() {
+        val animator = ValueAnimator.ofFloat(0f, -1700f)
+        animator.duration = 1000
+        animator.start()
+
+        animator.addUpdateListener(object : ValueAnimator.AnimatorUpdateListener {
+            override fun onAnimationUpdate(animation: ValueAnimator) {
+                val animatedValue = animation.animatedValue as Float
+                mHiscoreView.translationX = animatedValue
+                mYourscoreView.translationX = animatedValue
+                mgameoverView.translationX = animatedValue
+                mbuttonView.translationX = animatedValue
+            }
+        })
+    }
+
     private fun getHIscores(): String {
         val contt = this.applicationContext
         val prefs = contt.getSharedPreferences(
@@ -122,6 +151,25 @@ class GameOver : AppCompatActivity() {
         return chkHighScore.toString()
 
 
+    }
+
+    override fun onResume() {
+        super.onResume()
+
+        mediaPlayer.start()
+
+        // Tell the gameView resume method to execute
+//        kotlinInvadersView?.resume()
+    }
+
+    // This method executes when the player quits the game
+    override fun onPause() {
+        super.onPause()
+
+        mediaPlayer.stop()
+
+        // Tell the gameView pause method to execute
+//        kotlinInvadersView?.pause()
     }
 
 
