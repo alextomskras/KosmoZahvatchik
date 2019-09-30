@@ -4,6 +4,7 @@ import android.animation.Animator
 import android.animation.AnimatorListenerAdapter
 import android.animation.ValueAnimator
 import android.content.Intent
+import android.media.MediaPlayer
 import android.os.Bundle
 import android.os.Handler
 import android.support.v7.app.AppCompatActivity
@@ -18,6 +19,8 @@ import kotlinx.android.synthetic.main.activity_fullscreen.*
 
 
 class StartActivity : AppCompatActivity() {
+
+    private lateinit var mediaPlayer: MediaPlayer
 
 
     private lateinit var mcontentView: View
@@ -77,10 +80,23 @@ class StartActivity : AppCompatActivity() {
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
         mVisible = true
+//          Play_MUSIC_on_start_screen
+//        mediaPlayer = MediaPlayer.create(applicationContext,R.raw.spaceinvaders)
+//        mediaPlayer.start()
+//        Toast.makeText(this,"media playing", Toast.LENGTH_SHORT).show()
 
-        val soundPlayer = SoundPlayer(this)
+//        var player = MediaPlayer()
+//        try {
+//
+//            player!!.setDataSource(assets.damageshelter.ogg)
+//            player!!.prepare()
+//            player!!.start()
+//        }catch (ex:Exception){
+//        }
 
-        soundPlayer.playSound(SoundPlayer.startMusicID)
+//        val soundPlayer = SoundPlayer(this)
+//
+//        soundPlayer.playSound(SoundPlayer.startMusicID)
 
         // Set up the user interaction to manually show or hide the system UI.
         fullscreen_content.setOnClickListener { toggle() }

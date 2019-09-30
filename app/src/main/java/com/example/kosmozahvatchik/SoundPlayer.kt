@@ -22,8 +22,8 @@ class SoundPlayer(context: Context) {
         var damageShelterID = -1
         var uhID = -1
         var ohID = -1
-        var startMusicID = -1
-        var endMusicID = -1
+//        var startMusicID = -1
+//        var endMusicID = -1
     }
 
     init {
@@ -55,11 +55,11 @@ class SoundPlayer(context: Context) {
             descriptor = assetManager.openFd("oh.ogg")
             ohID = soundPool.load(descriptor, 0)
 
-            descriptor = assetManager.openFd("spaceinvaders.mpeg")
-            startMusicID = soundPool.load(descriptor, 0)
-
-            descriptor = assetManager.openFd("spaceinvaders.mpeg")
-            endMusicID = soundPool.load(descriptor, 0)
+//            descriptor = assetManager.openFd("")
+//            startMusicID = soundPool.load(descriptor, 0)
+//
+//            descriptor = assetManager.openFd("")
+//            endMusicID = soundPool.load(descriptor, 0)
 
 
         } catch (e: IOException) {
