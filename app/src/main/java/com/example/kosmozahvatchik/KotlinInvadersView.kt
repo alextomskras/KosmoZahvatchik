@@ -479,13 +479,19 @@ class KotlinInvadersView(context: Context,
 //        }else   {
         if (gameThread.isInterrupted) {
             Log.d(this.toString(), "Thread interrupted ${gameThread}")
+            gameThread.run()
+
+        }
+        if (gameThread.isAlive) {
+            Log.d(this.toString(), "Thread interrupted ${gameThread}")
+            gameThread.run()
 
         }
 
         playing = true
         prepareLevel()
         Log.d(this.toString(), "Thread thi gamethread ${gameThread}")
-        val testThread = Thread.currentThread()
+        val testThread = Thread.currentThread().state
         Log.d(this.toString(), "Thread thi curThread $testThread")
 
 //            if (gameThread == Thread.currentThread()) {
