@@ -9,10 +9,11 @@ import android.util.Log
 import android.view.MotionEvent
 import android.view.SurfaceView
 
-class KotlinInvadersView(context: Context,
-                         private val size: Point)
-    : SurfaceView(context),
-        Runnable {
+class KotlinInvadersView(
+    context: Context,
+    private val size: Point
+) : SurfaceView(context),
+    Runnable {
 
     companion object {
         val TAG = "KotlinInvadersView"
@@ -66,10 +67,11 @@ class KotlinInvadersView(context: Context,
 
     // To remember the high score
     private val prefs: SharedPreferences = context.getSharedPreferences(
-            "Kotlin Invaders",
-            Context.MODE_PRIVATE)
+        "Kotlin Invaders",
+        Context.MODE_PRIVATE
+    )
 
-    private var highScore =  prefs.getInt("highScore", 0)
+    private var highScore = prefs.getInt("highScore", 0)
 
     // How menacing should the sound be?
     private var menaceInterval: Long = 1000
@@ -80,8 +82,6 @@ class KotlinInvadersView(context: Context,
     private var lastMenaceTime = System.currentTimeMillis()
 
 
-
-
     private fun prepareLevel() {
         // Here we will initialize the game objects
         // Build an army of invaders
@@ -89,11 +89,15 @@ class KotlinInvadersView(context: Context,
         numInvaders = 0
         for (column in 0..10) {
             for (row in 0..5) {
-                invaders.add(Invader(context,
+                invaders.add(
+                    Invader(
+                        context,
                         row,
                         column,
                         size.x,
-                        size.y))
+                        size.y
+                    )
+                )
 
                 numInvaders++
             }
@@ -104,11 +108,15 @@ class KotlinInvadersView(context: Context,
         for (shelterNumber in 0..4) {
             for (column in 0..18) {
                 for (row in 0..8) {
-                    bricks.add(DefenceBrick(row,
+                    bricks.add(
+                        DefenceBrick(
+                            row,
                             column,
                             shelterNumber,
                             size.x,
-                            size.y))
+                            size.y
+                        )
+                    )
 
                     numBricks++
                 }
@@ -187,14 +195,20 @@ class KotlinInvadersView(context: Context,
                 invader.update(fps)
 
                 // Does he want to take a shot?
-                if (invader.takeAim(playerShip.position.left,
-                                playerShip.width,
-                                waves)) {
+                if (invader.takeAim(
+                        playerShip.position.left,
+                        playerShip.width,
+                        waves
+                    )
+                ) {
 
                     // If so try and spawn a bullet
-                    if (invadersBullets[nextBullet].shoot(invader.position.left
+                    if (invadersBullets[nextBullet].shoot(
+                            invader.position.left
                                     + invader.width / 2,
-                                    invader.position.top, playerBullet.down)) {
+                            invader.position.top, playerBullet.down
+                        )
+                    ) {
 
                         // Shot fired
                         // Prepare for the next shot
@@ -214,7 +228,8 @@ class KotlinInvadersView(context: Context,
                 // If that move caused them to bump
                 // the screen change bumped to true
                 if (invader.position.left > size.x - invader.width
-                        || invader.position.left < 0) {
+                    || invader.position.left < 0
+                ) {
 
                     bumped = true
 
@@ -250,7 +265,7 @@ class KotlinInvadersView(context: Context,
 
         // Has the player's playerBullet hit the top of the screen
         if (playerBullet.position.bottom < 0) {
-            playerBullet.isActive =false
+            playerBullet.isActive = false
         }
 
         // Has an invaders playerBullet hit the bottom of the screen
@@ -269,10 +284,10 @@ class KotlinInvadersView(context: Context,
 
                         soundPlayer.playSound(SoundPlayer.invaderExplodeID)
                         playerBullet.isActive = false
-                        Invader.numberOfInvaders --
+                        Invader.numberOfInvaders--
                         score += 10
                         //Check score is high over HighScore
-                        if(score > highScore){
+                        if (score > highScore) {
                             highScore = score
                         }
 
@@ -280,12 +295,12 @@ class KotlinInvadersView(context: Context,
                         //if (score == numInvaders * 10 * waves) {
                         if (Invader.numberOfInvaders == 0) {
                             paused = true
-                            lives ++
+                            lives++
                             invaders.clear()
                             bricks.clear()
                             invadersBullets.clear()
                             prepareLevel()
-                            waves ++
+                            waves++
                             break
                         }
 
@@ -335,7 +350,7 @@ class KotlinInvadersView(context: Context,
                 //Check intersect coordinates
                 if (RectF.intersects(playerShip.position, bullet.position)) {
                     bullet.isActive = false
-                    lives --
+                    lives--
                     soundPlayer.playSound(SoundPlayer.playerExplodeID)
 
                     // Is it game over?
@@ -386,23 +401,29 @@ class KotlinInvadersView(context: Context,
 
             // Draw all the game objects here
             // Now draw the player spaceship
-            canvas.drawBitmap(playerShip.bitmap, playerShip.position.left,
-                    playerShip.position.top
-                    , paint)
+            canvas.drawBitmap(
+                playerShip.bitmap, playerShip.position.left,
+                playerShip.position.top
+                , paint
+            )
 
             // Draw the invaders
             for (invader in invaders) {
                 if (invader.isVisible) {
                     if (uhOrOh) {
-                        canvas.drawBitmap(Invader.bitmap1,
-                                invader.position.left,
-                                invader.position.top,
-                                paint)
+                        canvas.drawBitmap(
+                            Invader.bitmap1,
+                            invader.position.left,
+                            invader.position.top,
+                            paint
+                        )
                     } else {
-                        canvas.drawBitmap(Invader.bitmap2,
-                                invader.position.left,
-                                invader.position.top,
-                                paint)
+                        canvas.drawBitmap(
+                            Invader.bitmap2,
+                            invader.position.left,
+                            invader.position.top,
+                            paint
+                        )
                     }
                 }
             }
@@ -430,8 +451,10 @@ class KotlinInvadersView(context: Context,
             // Change the brush color
             paint.color = Color.argb(255, 255, 255, 255)
             paint.textSize = 70f
-            canvas.drawText("Score: $score   Lives: $lives Wave: " +
-                    "$waves HI: $highScore", 20f, 75f, paint)
+            canvas.drawText(
+                "Score: $score   Lives: $lives Wave: " +
+                        "$waves HI: $highScore", 20f, 75f, paint
+            )
 
             // Draw everything to the screen
             holder.unlockCanvasAndPost(canvas)
@@ -446,7 +469,7 @@ class KotlinInvadersView(context: Context,
 
             Log.d(this.toString(), "Thread interrupted ${gameThread}")
 
-            gameThread.interrupt()
+            gameThread.join()
 //            gameThread.stop()
         } catch (e: InterruptedException) {
             Log.e("Error:", "joining thread")
@@ -454,16 +477,18 @@ class KotlinInvadersView(context: Context,
 
 
         val prefs = context.getSharedPreferences(
-                "Kotlin Invaders",
-                Context.MODE_PRIVATE)
+            "Kotlin Invaders",
+            Context.MODE_PRIVATE
+        )
 
         val oldHighScore = prefs.getInt("highScore", 0)
 
-        if(highScore > oldHighScore) {
+        if (highScore > oldHighScore) {
             val editor = prefs.edit()
 
             editor.putInt(
-                    "highScore", highScore)
+                "highScore", highScore
+            )
 
             editor.apply()
         }
@@ -477,25 +502,31 @@ class KotlinInvadersView(context: Context,
 //            prepareLevel()
 //            gameThread.join()
 //        }else   {
-        if (gameThread.isInterrupted) {
-            Log.d(this.toString(), "Thread interrupted ${gameThread}")
-            gameThread.run()
-
-        }
-        if (gameThread.isAlive) {
-            Log.d(this.toString(), "Thread interrupted ${gameThread}")
-            gameThread.run()
-
-        }
+//        if (gameThread.isInterrupted) {
+//            Log.d(this.toString(), "Thread interrupted ${gameThread}")
+//            gameThread.run()
+//
+//        }
+//        if (gameThread.isAlive) {
+//            Log.d(this.toString(), "Thread interrupted ${gameThread}")
+//            gameThread.run()
+//
+//        }
 
         playing = true
         prepareLevel()
         Log.d(this.toString(), "Thread thi gamethread ${gameThread}")
         val testThread = Thread.currentThread().state
-        Log.d(this.toString(), "Thread thi curThread $testThread")
-
+        Log.d(this.toString(), "Thread thi currThread $testThread")
+//        if (testThread == Thread.State.RUNNABLE) {
+//            Log.d(this.toString(), "Thread thi RUNNABLEThread $testThread")
+//            gameThread.start()
+//        }
+        if (gameThread.isAlive) {
+            Log.d(this.toString(), "Thread is AliveThread $testThread")
+            gameThread.start()
+        }
 //            if (gameThread == Thread.currentThread()) {
-        gameThread.start()
 //            }
 //        }
 
@@ -512,11 +543,11 @@ class KotlinInvadersView(context: Context,
     override fun onTouchEvent(motionEvent: MotionEvent): Boolean {
         when (motionEvent.action and MotionEvent.ACTION_MASK) {
 
-        // Player has touched the screen
-        // Or moved their finger while touching screen
+            // Player has touched the screen
+            // Or moved their finger while touching screen
             MotionEvent.ACTION_POINTER_DOWN,
             MotionEvent.ACTION_DOWN,
-            MotionEvent.ACTION_MOVE-> {
+            MotionEvent.ACTION_MOVE -> {
                 paused = false
 
                 if (motionEvent.y > size.y - size.y / 8) {
@@ -531,16 +562,18 @@ class KotlinInvadersView(context: Context,
                 if (motionEvent.y < size.y - size.y / 8) {
                     // Shots fired
                     if (playerBullet.shoot(
-                                    playerShip.position.left + playerShip.width / 2f,
-                                    playerShip.position.top,
-                                    playerBullet.up)) {
+                            playerShip.position.left + playerShip.width / 2f,
+                            playerShip.position.top,
+                            playerBullet.up
+                        )
+                    ) {
 
                         soundPlayer.playSound(SoundPlayer.shootID)
                     }
                 }
             }
 
-        // Player has removed finger from screen
+            // Player has removed finger from screen
             MotionEvent.ACTION_POINTER_UP,
             MotionEvent.ACTION_UP -> {
                 if (motionEvent.y > size.y - size.y / 10) {
