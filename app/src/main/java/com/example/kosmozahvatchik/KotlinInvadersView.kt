@@ -526,17 +526,18 @@ class KotlinInvadersView(
             Log.d(this.toString(), "Thread is AliveThread $testThread")
             gameThread.start()
         }
+        gameThread.start()
 //            if (gameThread == Thread.currentThread()) {
 //            }
 //        }
 
     }
 
-//    fun start() {
-//        playing = true
-//        prepareLevel()
-//        gameThread.start()
-//    }
+    fun start() {
+        playing = true
+        prepareLevel()
+        gameThread.start()
+    }
 
     // The SurfaceView class implements onTouchListener
     // So we can override this method and detect screen touches.
