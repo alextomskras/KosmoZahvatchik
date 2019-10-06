@@ -69,7 +69,7 @@ class GameOver : AppCompatActivity() {
         mVisible = true
 
         // Play_MUSIC_on_gameover_screen
-        mediaPlayer = MediaPlayer.create(applicationContext, R.raw.spaceinvaders)
+        mediaPlayer = MediaPlayer.create(applicationContext, R.raw.end)
         mediaPlayer.isLooping = true
         mediaPlayer.start()
         Toast.makeText(this, "media playing", Toast.LENGTH_SHORT).show()

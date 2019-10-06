@@ -83,7 +83,11 @@ class StartActivity : AppCompatActivity() {
         mVisible = true
 
         // Play_MUSIC_on_start_screen
-        mediaPlayer = MediaPlayer.create(applicationContext, R.raw.spaceinvaders)
+        mediaPlayer = MediaPlayer.create(applicationContext, R.raw.start)
+        mediaPlayer.isLooping = true
+        mediaPlayer.setVolume(8f, 8f)
+//        mediaPlayer.setLooping(true)
+
         mediaPlayer.start()
         Toast.makeText(this, "media playing", Toast.LENGTH_SHORT).show()
 
