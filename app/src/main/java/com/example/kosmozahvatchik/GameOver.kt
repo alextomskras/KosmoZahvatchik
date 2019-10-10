@@ -11,6 +11,8 @@ import android.support.v7.app.AppCompatActivity
 import android.util.Log
 import android.view.View
 import android.widget.Toast
+import com.google.android.gms.ads.AdRequest
+import com.google.android.gms.ads.AdView
 import kotlinx.android.synthetic.main.activity_game_over.*
 
 
@@ -63,7 +65,7 @@ class GameOver : AppCompatActivity() {
     }
 //    private val TAG = "GameOverActivity"
 //
-//    private var mAdView: AdView? = null
+private var mAdView: AdView? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -72,11 +74,13 @@ class GameOver : AppCompatActivity() {
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
         mVisible = true
-//        MobileAds.initialize(this) {}
+//        MobileAds.initialize(this) {}.toString()
 
-//        mAdView = findViewById(R.id.adView)
-//        val adRequest = AdRequest.Builder().build()
-//        mAdView.loadAd(adRequest)
+        mAdView = findViewById(R.id.adView)
+        val adRequest = AdRequest.Builder()
+            .addTestDevice(AdRequest.DEVICE_ID_EMULATOR)
+            .build()
+        mAdView?.loadAd(adRequest)
 
         // Play_MUSIC_on_gameover_screen
         mediaPlayer = MediaPlayer.create(applicationContext, R.raw.end)
