@@ -85,7 +85,7 @@ class StartActivity : AppCompatActivity() {
         // Play_MUSIC_on_start_screen
         mediaPlayer = MediaPlayer.create(applicationContext, R.raw.start)
         mediaPlayer.isLooping = true
-        mediaPlayer.setVolume(8f, 8f)
+        mediaPlayer.setVolume(22f, 22f)
 //        mediaPlayer.setLooping(true)
 
         mediaPlayer.start()

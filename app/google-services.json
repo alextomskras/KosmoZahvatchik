@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "946592051939",
+    "firebase_url": "https://kosmozahvatchik.firebaseio.com",
+    "project_id": "kosmozahvatchik",
+    "storage_bucket": "kosmozahvatchik.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:946592051939:android:9e8e04485421a835cd8bd6",
+        "android_client_info": {
+          "package_name": "com.example.kosmozahvatchik"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "946592051939-aqste2bucd7smdud8tjs1npuk050qhdo.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.kosmozahvatchik",
+            "certificate_hash": "9ee27b271e3c0b65796f661877ae907fc43582ec"
+          }
+        },
+        {
+          "client_id": "946592051939-qmuq23lanrv81k3gdae7qhjrar9mai17.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBXis0UlMjhJUhT8ggqXXGUhkkp4w2oW1w"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "946592051939-qmuq23lanrv81k3gdae7qhjrar9mai17.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

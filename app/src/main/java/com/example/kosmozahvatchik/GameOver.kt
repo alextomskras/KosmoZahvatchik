@@ -1,5 +1,6 @@
 package com.example.kosmozahvatchik
 
+
 import android.animation.ValueAnimator
 import android.content.Context
 import android.content.Intent
@@ -11,6 +12,7 @@ import android.util.Log
 import android.view.View
 import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_game_over.*
+
 
 /**
  * An example full-screen activity that shows and hides the system UI (i.e.
@@ -59,6 +61,9 @@ class GameOver : AppCompatActivity() {
         }
         false
     }
+//    private val TAG = "GameOverActivity"
+//
+//    private var mAdView: AdView? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -67,6 +72,11 @@ class GameOver : AppCompatActivity() {
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
         mVisible = true
+//        MobileAds.initialize(this) {}
+
+//        mAdView = findViewById(R.id.adView)
+//        val adRequest = AdRequest.Builder().build()
+//        mAdView.loadAd(adRequest)
 
         // Play_MUSIC_on_gameover_screen
         mediaPlayer = MediaPlayer.create(applicationContext, R.raw.end)
@@ -155,13 +165,15 @@ class GameOver : AppCompatActivity() {
     }
 
     override fun onResume() {
-        super.onResume()
 
         if (!mediaPlayer.isPlaying) {
 
             mediaPlayer.start()
 
         }
+        super.onResume()
+
+
         // Tell the gameView resume method to execute
 
         //        kotlinInvadersView?.resume()
@@ -169,12 +181,15 @@ class GameOver : AppCompatActivity() {
 
     // This method executes when the player quits the game
     override fun onPause() {
-        super.onPause()
+
+
         mediaPlayer.pause()
         mediaPlayer.reset()
         mediaPlayer.release()
 
         mediaPlayer.stop()
+        super.onPause()
+
 
         // Tell the gameView pause method to execute
 //        kotlinInvadersView?.pause()

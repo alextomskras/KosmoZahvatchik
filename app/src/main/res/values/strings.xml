@@ -10,4 +10,8 @@
     <string name="title_activity_game_over">GameOver</string>
     <string name="you_win">Your score:</string>
     <string name="hiscore">Best score:</string>
+    <string name="admob_app_id">ca-app-pub-9051542338788579~3256817607</string>
+    <string name="admob_banner_ad">ca-app-pub-9051542338788579/2109604503</string>
+    <string name="banner_ad_unit_id" />
+
 </resources>
