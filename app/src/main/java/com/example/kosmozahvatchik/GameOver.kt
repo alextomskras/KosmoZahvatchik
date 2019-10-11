@@ -12,6 +12,7 @@ import android.util.Log
 import android.view.View
 import android.widget.Toast
 import com.google.android.gms.ads.AdRequest
+import com.google.android.gms.ads.AdSize
 import com.google.android.gms.ads.AdView
 import kotlinx.android.synthetic.main.activity_game_over.*
 
@@ -77,6 +78,8 @@ private var mAdView: AdView? = null
 //        MobileAds.initialize(this) {}.toString()
 
         mAdView = findViewById(R.id.adView)
+        mAdView?.adSize = AdSize.BANNER
+        mAdView?.adUnitId = (R.string.admob_app_id).toString()
         val adRequest = AdRequest.Builder()
             .addTestDevice(AdRequest.DEVICE_ID_EMULATOR)
             .build()
