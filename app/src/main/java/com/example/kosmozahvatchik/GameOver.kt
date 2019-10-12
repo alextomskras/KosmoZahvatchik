@@ -87,7 +87,7 @@ class GameOver : AppCompatActivity() {
 
         // Play_MUSIC_on_gameover_screen
         mediaPlayer = MediaPlayer.create(applicationContext, R.raw.end)
-        mediaPlayer.isLooping = true
+        mediaPlayer.isLooping = false
         mediaPlayer.start()
         Toast.makeText(this, "media playing", Toast.LENGTH_SHORT).show()
 

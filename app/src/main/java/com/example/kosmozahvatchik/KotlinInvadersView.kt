@@ -513,7 +513,7 @@ class KotlinInvadersView(
 //
 //        }
 
-        playing = true
+        this.playing = true
         prepareLevel()
         Log.d(this.toString(), "Thread thi gamethread ${gameThread}")
         val testThread = Thread.currentThread().state
@@ -522,10 +522,10 @@ class KotlinInvadersView(
 //            Log.d(this.toString(), "Thread thi RUNNABLEThread $testThread")
 //            gameThread.start()
 //        }
-        if (gameThread.isAlive) {
-            Log.d(this.toString(), "Thread is AliveThread $testThread")
-            gameThread.start()
-        }
+//        if (gameThread.isAlive) {
+//            Log.d(this.toString(), "Thread is AliveThread $testThread")
+//            gameThread.start()
+//        }
         gameThread.start()
 //            if (gameThread == Thread.currentThread()) {
 //            }
