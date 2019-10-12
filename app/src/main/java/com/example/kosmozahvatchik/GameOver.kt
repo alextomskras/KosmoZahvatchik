@@ -76,6 +76,7 @@ class GameOver : AppCompatActivity() {
         mVisible = true
 //        MobileAds.initialize(this) {}.toString()
 
+        // AdMob BANNER on GameOver screen
         mAdView = findViewById(R.id.adView)
 //        mAdView.adSize = AdSize.SMART_BANNER
 //        mAdView.adUnitId = (R.string.admob_app_id).toString()
