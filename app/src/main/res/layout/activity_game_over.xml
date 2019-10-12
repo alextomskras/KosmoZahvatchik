@@ -15,6 +15,18 @@
     <!-- This FrameLayout insets its children based on system windows using
          android:fitsSystemWindows. -->
 
+    <com.google.android.gms.ads.AdView
+        android:id="@+id/adView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        ads:adSize="BANNER"
+        ads:adUnitId="ca-app-pub-3940256099942544/6300978111"
+        ads:layout_constraintEnd_toEndOf="parent"
+        ads:layout_constraintHorizontal_bias="0.5"
+        ads:layout_constraintStart_toStartOf="parent"
+        ads:layout_constraintTop_toTopOf="parent"
+        tools:ignore="RedundantNamespace" />
+
     <TextView
         android:id="@+id/game_over_content"
         android:layout_width="wrap_content"
@@ -41,9 +53,11 @@
         android:textColor="@color/txt_Gameover_color"
         android:textSize="20sp"
         android:textStyle="bold"
+        ads:layout_constraintEnd_toEndOf="parent"
+        ads:layout_constraintHorizontal_bias="0.5"
+        ads:layout_constraintStart_toStartOf="parent"
         ads:layout_constraintTop_toBottomOf="@+id/game_over_content"
-        tools:ignore="RtlCompat"
-        tools:layout_editor_absoluteX="314dp" />
+        tools:ignore="RtlCompat" />
 
     <TextView
         android:id="@+id/txt_HI_you_score"
@@ -62,17 +76,6 @@
         ads:layout_constraintTop_toBottomOf="@+id/txt_gameover_you_score"
         tools:ignore="RtlCompat" />
 
-
-    <com.google.android.gms.ads.AdView
-        android:id="@+id/adView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        ads:adSize="BANNER"
-        ads:adUnitId="ca-app-pub-3940256099942544/6300978111"
-        ads:layout_constraintEnd_toEndOf="parent"
-        ads:layout_constraintHorizontal_bias="0.5"
-        ads:layout_constraintStart_toStartOf="parent"
-        tools:ignore="RedundantNamespace" />
 
     <LinearLayout
         android:id="@+id/fullscreen_content_controls"

@@ -102,6 +102,8 @@ class GameOver : AppCompatActivity() {
 
         txt_gameover_you_score.text = txtyouscore.toString()
         txt_HI_you_score.text = "${txt_HI_you_score.text} $hiScore".toString()
+//        txt_gameover_you_score.text = "555"
+//        txt_HI_you_score.text = "999"
 //        val youscore = txt_gameover_you_score
 
 
@@ -168,21 +170,6 @@ class GameOver : AppCompatActivity() {
 
     }
 
-    override fun onResume() {
-
-        if (!mediaPlayer.isPlaying) {
-
-            mediaPlayer.start()
-
-        }
-        super.onResume()
-
-
-        // Tell the gameView resume method to execute
-
-        //        kotlinInvadersView?.resume()
-    }
-
     // This method executes when the player quits the game
     override fun onPause() {
 
@@ -191,7 +178,7 @@ class GameOver : AppCompatActivity() {
         mediaPlayer.reset()
         mediaPlayer.release()
 
-        mediaPlayer.stop()
+//        mediaPlayer.stop()
         super.onPause()
 
 
