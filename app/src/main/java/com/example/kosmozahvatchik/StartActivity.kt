@@ -11,6 +11,7 @@ import android.support.v7.app.AppCompatActivity
 import android.util.Log
 import android.view.View
 import android.widget.Toast
+import com.google.android.gms.ads.AdView
 import kotlinx.android.synthetic.main.activity_fullscreen.*
 
 /**
@@ -27,7 +28,6 @@ class StartActivity : AppCompatActivity() {
     private lateinit var mcontentView: View
     private lateinit var mloadingView: View
     private var shortAnimationDuration: Int = 0
-
 
 
     private val mHideHandler = Handler()
@@ -63,6 +63,7 @@ class StartActivity : AppCompatActivity() {
         }
         false
     }
+    private lateinit var mAdView: AdView
 //    private val context:Context = this.applicationContext
 //    private val soundPlayer = SoundPlayer(this)
 
@@ -81,6 +82,15 @@ class StartActivity : AppCompatActivity() {
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
         mVisible = true
+
+//        mAdView = findViewById(R.id.adView)
+////        mAdView.adSize = AdSize.SMART_BANNER
+////        mAdView.adUnitId = (R.string.admob_app_id).toString()
+//        val adRequest = AdRequest.Builder()
+//            .addTestDevice(AdRequest.DEVICE_ID_EMULATOR)
+//            .addTestDevice("BA9723C4E9664D3AD0E7D0E39D3A4274")
+//            .build()
+//        mAdView.loadAd(adRequest)
 
         // Play_MUSIC_on_start_screen
         mediaPlayer = MediaPlayer.create(applicationContext, R.raw.start)
@@ -129,7 +139,6 @@ class StartActivity : AppCompatActivity() {
 
         // Retrieve and cache the system's default "short" animation time.
         shortAnimationDuration = resources.getInteger(android.R.integer.config_shortAnimTime)
-
 
 
     }

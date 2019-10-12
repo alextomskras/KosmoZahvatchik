@@ -12,7 +12,6 @@ import android.util.Log
 import android.view.View
 import android.widget.Toast
 import com.google.android.gms.ads.AdRequest
-import com.google.android.gms.ads.AdSize
 import com.google.android.gms.ads.AdView
 import kotlinx.android.synthetic.main.activity_game_over.*
 
@@ -64,9 +63,9 @@ class GameOver : AppCompatActivity() {
         }
         false
     }
-//    private val TAG = "GameOverActivity"
+    //    private val TAG = "GameOverActivity"
 //
-private var mAdView: AdView? = null
+    private lateinit var mAdView: AdView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -78,12 +77,13 @@ private var mAdView: AdView? = null
 //        MobileAds.initialize(this) {}.toString()
 
         mAdView = findViewById(R.id.adView)
-        mAdView?.adSize = AdSize.BANNER
-        mAdView?.adUnitId = (R.string.admob_app_id).toString()
+//        mAdView.adSize = AdSize.SMART_BANNER
+//        mAdView.adUnitId = (R.string.admob_app_id).toString()
         val adRequest = AdRequest.Builder()
             .addTestDevice(AdRequest.DEVICE_ID_EMULATOR)
+            .addTestDevice("BA9723C4E9664D3AD0E7D0E39D3A4274")
             .build()
-        mAdView?.loadAd(adRequest)
+        mAdView.loadAd(adRequest)
 
         // Play_MUSIC_on_gameover_screen
         mediaPlayer = MediaPlayer.create(applicationContext, R.raw.end)
@@ -103,7 +103,6 @@ private var mAdView: AdView? = null
         txt_gameover_you_score.text = txtyouscore.toString()
         txt_HI_you_score.text = "${txt_HI_you_score.text} $hiScore".toString()
 //        val youscore = txt_gameover_you_score
-
 
 
         // Set up the user interaction to manually show or hide the system UI.
@@ -132,8 +131,6 @@ private var mAdView: AdView? = null
     override fun onPostCreate(savedInstanceState: Bundle?) {
         super.onPostCreate(savedInstanceState)
         getHIscores()
-
-
 
 
         // Trigger the initial hide() shortly after the activity has been
