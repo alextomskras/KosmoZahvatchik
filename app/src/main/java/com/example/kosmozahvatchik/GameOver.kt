@@ -86,6 +86,7 @@ class GameOver : AppCompatActivity() {
             .build()
         mAdView.loadAd(adRequest)
 
+
         // Play_MUSIC_on_gameover_screen
         mediaPlayer = MediaPlayer.create(applicationContext, R.raw.end)
         mediaPlayer.isLooping = false
