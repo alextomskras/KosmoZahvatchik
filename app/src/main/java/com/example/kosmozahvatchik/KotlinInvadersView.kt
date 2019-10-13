@@ -4,10 +4,10 @@ import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
 import android.graphics.*
-import android.support.v4.content.ContextCompat.startActivity
 import android.util.Log
 import android.view.MotionEvent
 import android.view.SurfaceView
+import androidx.core.content.ContextCompat.startActivity
 
 class KotlinInvadersView(
     context: Context,
