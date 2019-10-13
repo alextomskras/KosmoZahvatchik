@@ -12,6 +12,7 @@
     <string name="hiscore">Best score:</string>
     <string name="admob_app_id">ca-app-pub-9051542338788579~3256817607</string>
     <string name="admob_banner_ad">ca-app-pub-9051542338788579/2109604503</string>
+    <string name="admob_banner2_ad">ca-app-pub-9051542338788579/5305687443</string>
     <string name="admob_test_banner_ad">ca-app-pub-3940256099942544/6300978111</string>
     <string name="banner_ad_unit_id" />
 

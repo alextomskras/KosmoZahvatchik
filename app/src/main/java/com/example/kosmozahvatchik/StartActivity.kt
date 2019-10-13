@@ -11,8 +11,9 @@ import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.google.android.gms.ads.AdView
+import com.google.android.gms.ads.*
 import kotlinx.android.synthetic.main.activity_fullscreen.*
+
 
 /**
  * An example full-screen activity that shows and hides the system UI (i.e.
@@ -64,6 +65,7 @@ class StartActivity : AppCompatActivity() {
         false
     }
     private lateinit var mAdView: AdView
+    private lateinit var mInterstitialAd: InterstitialAd
 //    private val context:Context = this.applicationContext
 //    private val soundPlayer = SoundPlayer(this)
 
@@ -83,14 +85,34 @@ class StartActivity : AppCompatActivity() {
 
         mVisible = true
 
-//        mAdView = findViewById(R.id.adView)
-////        mAdView.adSize = AdSize.SMART_BANNER
-////        mAdView.adUnitId = (R.string.admob_app_id).toString()
-//        val adRequest = AdRequest.Builder()
-//            .addTestDevice(AdRequest.DEVICE_ID_EMULATOR)
-//            .addTestDevice("BA9723C4E9664D3AD0E7D0E39D3A4274")
-//            .build()
-//        mAdView.loadAd(adRequest)
+        MobileAds.initialize(
+            this
+        ) { }
+
+        mAdView = findViewById(R.id.adView)
+//////        mAdView.adSize = AdSize.SMART_BANNER
+//////        mAdView.adUnitId = (R.string.admob_app_id).toString()
+        val adRequest = AdRequest.Builder()
+            .addTestDevice(AdRequest.DEVICE_ID_EMULATOR)
+            .addTestDevice("BA9723C4E9664D3AD0E7D0E39D3A4274")
+            .build()
+        mAdView.loadAd(adRequest)
+        mAdView.adListener
+
+        mInterstitialAd = InterstitialAd(this)
+        mInterstitialAd.adUnitId = "ca-app-pub-9051542338788579~3256817607"
+//        Toast.makeText(this, "mInterstitialAd.adUnitId", Toast.LENGTH_LONG).show()
+        mInterstitialAd.adListener = object : AdListener() {
+            override fun onAdClosed() {
+                mInterstitialAd.loadAd(AdRequest.Builder().build())
+            }
+        }
+        mInterstitialAd.loadAd(
+            AdRequest.Builder()
+                .addTestDevice(AdRequest.DEVICE_ID_EMULATOR)
+                .addTestDevice("BA9723C4E9664D3AD0E7D0E39D3A4274")
+                .build()
+        )
 
         // Play_MUSIC_on_start_screen
         mediaPlayer = MediaPlayer.create(applicationContext, R.raw.start)
@@ -125,10 +147,17 @@ class StartActivity : AppCompatActivity() {
 
             // launch the StartGAME activity somehow
             val intent = Intent(this, KotlinInvadersActivity::class.java)
-            transFlow()
+
 
             mediaPlayer.stop()
 
+            if (mInterstitialAd.isLoaded) {
+                mInterstitialAd.show()
+            } else {
+//            Toast.makeText(this, "The interstitial wasn't loaded yet.", Toast.LENGTH_SHORT).show()
+                Log.d("TAG", "The interstitial wasn't loaded yet.")
+            }
+//            transFlow()
             startActivity(intent)
         }
         mcontentView = findViewById(R.id.fullscreen_content_controls)
