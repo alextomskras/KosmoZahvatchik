@@ -1,10 +1,10 @@
-package com.example.kosmozahvatchik
+package com.dreamer.kosmozahvatchik
 
 import android.content.Context
 import android.graphics.Bitmap
+import android.graphics.BitmapFactory
 import android.graphics.RectF
 import java.util.*
-import android.graphics.BitmapFactory
 
 class Invader(context: Context, row: Int, column: Int, screenX: Int, screenY: Int) {
     // How wide, high and spaced out are the invader will be

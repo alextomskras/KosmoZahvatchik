@@ -1,9 +1,9 @@
-package com.example.kosmozahvatchik
+package com.dreamer.kosmozahvatchik
 
 import android.content.Context
 import android.graphics.Bitmap
-import android.graphics.RectF
 import android.graphics.BitmapFactory
+import android.graphics.RectF
 
 class PlayerShip(context: Context,
                  private val screenX: Int,

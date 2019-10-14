@@ -1,4 +1,4 @@
-package com.example.kosmozahvatchik
+package com.dreamer.kosmozahvatchik
 
 
 import android.animation.ValueAnimator
@@ -18,7 +18,7 @@ import kotlinx.android.synthetic.main.activity_game_over.*
 
 
 /**
- * An example full-screen activity that shows and hides the system UI (i.e.
+ * An dreamer full-screen activity that shows and hides the system UI (i.e.
  * status bar and navigation/system bar) with user interaction.
  */
 class GameOver : AppCompatActivity() {

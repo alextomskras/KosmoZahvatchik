@@ -1,4 +1,4 @@
-package com.example.kosmozahvatchik
+package com.dreamer.kosmozahvatchik
 
 import android.content.Context
 import android.content.res.AssetFileDescriptor

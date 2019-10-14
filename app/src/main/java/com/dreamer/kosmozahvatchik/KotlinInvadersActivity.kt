@@ -1,4 +1,4 @@
-package com.example.kosmozahvatchik
+package com.dreamer.kosmozahvatchik
 
 import android.app.Activity
 import android.graphics.Point

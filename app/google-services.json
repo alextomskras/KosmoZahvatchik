@@ -10,7 +10,7 @@
       "client_info": {
         "mobilesdk_app_id": "1:946592051939:android:9e8e04485421a835cd8bd6",
         "android_client_info": {
-          "package_name": "com.example.kosmozahvatchik"
+          "package_name": "com.dreamer.kosmozahvatchik"
         }
       },
       "oauth_client": [
@@ -18,7 +18,7 @@
           "client_id": "946592051939-auvbifgmjc5e9e0tbuliaci04b7selqg.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "com.example.kosmozahvatchik",
+            "package_name": "com.dreamer.kosmozahvatchik",
             "certificate_hash": "f21edc75819574eb1bd5b5c28dc0b255bef77593"
           }
         },
@@ -26,7 +26,7 @@
           "client_id": "946592051939-aqste2bucd7smdud8tjs1npuk050qhdo.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "com.example.kosmozahvatchik",
+            "package_name": "com.dreamer.kosmozahvatchik",
             "certificate_hash": "9ee27b271e3c0b65796f661877ae907fc43582ec"
           }
         },

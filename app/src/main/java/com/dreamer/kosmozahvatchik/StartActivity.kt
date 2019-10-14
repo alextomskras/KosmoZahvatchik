@@ -1,4 +1,4 @@
-package com.example.kosmozahvatchik
+package com.dreamer.kosmozahvatchik
 
 import android.animation.Animator
 import android.animation.AnimatorListenerAdapter
@@ -16,7 +16,7 @@ import kotlinx.android.synthetic.main.activity_fullscreen.*
 
 
 /**
- * An example full-screen activity that shows and hides the system UI (i.e.
+ * An dreamer full-screen activity that shows and hides the system UI (i.e.
  * status bar and navigation/system bar) with user interaction.
  */
 
@@ -85,9 +85,7 @@ class StartActivity : AppCompatActivity() {
 
         mVisible = true
 
-        MobileAds.initialize(
-            this
-        ) { }
+        MobileAds.initialize(this) { }
 
         mAdView = findViewById(R.id.adView)
 //////        mAdView.adSize = AdSize.SMART_BANNER
@@ -97,22 +95,38 @@ class StartActivity : AppCompatActivity() {
             .addTestDevice("BA9723C4E9664D3AD0E7D0E39D3A4274")
             .build()
         mAdView.loadAd(adRequest)
-        mAdView.adListener
 
-        mInterstitialAd = InterstitialAd(this)
-        mInterstitialAd.adUnitId = "ca-app-pub-9051542338788579~3256817607"
+
+        mInterstitialAd = InterstitialAd(this).apply {
+            adUnitId = "ca-app-pub-9051542338788579/2908902045"
+
 //        Toast.makeText(this, "mInterstitialAd.adUnitId", Toast.LENGTH_LONG).show()
-        mInterstitialAd.adListener = object : AdListener() {
-            override fun onAdClosed() {
-                mInterstitialAd.loadAd(AdRequest.Builder().build())
+            adListener = object : AdListener() {
+                override fun onAdLoaded() {
+                    Toast.makeText(this@StartActivity, "onAdLoaded()", Toast.LENGTH_SHORT).show()
+//                    mInterstitialAd.show()
+                }
+
+//                override fun onAdClosed() {
+//                    mInterstitialAd.loadAd(AdRequest.Builder().build())
+//                }
+
+                override fun onAdFailedToLoad(errorCode: Int) {
+                    Toast.makeText(
+                        this@StartActivity,
+                        "onAdFailedToLoad() with error code: $errorCode",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
             }
         }
         mInterstitialAd.loadAd(
             AdRequest.Builder()
-                .addTestDevice(AdRequest.DEVICE_ID_EMULATOR)
-                .addTestDevice("BA9723C4E9664D3AD0E7D0E39D3A4274")
+//                .addTestDevice(AdRequest.DEVICE_ID_EMULATOR)
+//                .addTestDevice("BA9723C4E9664D3AD0E7D0E39D3A4274")
                 .build()
         )
+
 
         // Play_MUSIC_on_start_screen
         mediaPlayer = MediaPlayer.create(applicationContext, R.raw.start)
@@ -151,12 +165,22 @@ class StartActivity : AppCompatActivity() {
 
             mediaPlayer.stop()
 
-            if (mInterstitialAd.isLoaded) {
-                mInterstitialAd.show()
-            } else {
-//            Toast.makeText(this, "The interstitial wasn't loaded yet.", Toast.LENGTH_SHORT).show()
-                Log.d("TAG", "The interstitial wasn't loaded yet.")
-            }
+//            mInterstitialAd.adListener = object : AdListener() {
+//                override fun onAdLoaded() {
+//                    Toast.makeText(this@StartActivity, "onAdLoaded11()", Toast.LENGTH_SHORT).show()
+//                    mInterstitialAd.show()
+//                }
+//            }
+//            if (mInterstitialAd.isLoaded) {
+//                mInterstitialAd.show()
+
+//            } else {
+//
+//                Toast.makeText(this, "The interstitial wasn't loaded yet.", Toast.LENGTH_SHORT)
+//                    .show()
+//
+//                Log.d("TAG", "The interstitial wasn't loaded yet.")
+//            }
 //            transFlow()
             startActivity(intent)
         }
