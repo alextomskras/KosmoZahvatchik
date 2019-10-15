@@ -168,12 +168,7 @@ class GameOver : AppCompatActivity() {
 
     }
 
-    override fun onBackPressed() {
-        mInterstitialAd.loadAd(AdRequest.Builder().build())
-        bigBanner()
-        super.onBackPressed()
 
-    }
 
     private fun bigBanner() {
         mInterstitialAd.show()
@@ -217,6 +212,13 @@ class GameOver : AppCompatActivity() {
         var chkHighScore = prefs.getInt("highScore", 0)
         return chkHighScore.toString()
 
+
+    }
+
+    override fun onBackPressed() {
+        mInterstitialAd.loadAd(AdRequest.Builder().build())
+        bigBanner()
+        super.onBackPressed()
 
     }
 

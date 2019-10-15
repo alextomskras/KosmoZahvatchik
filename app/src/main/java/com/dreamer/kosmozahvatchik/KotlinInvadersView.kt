@@ -382,6 +382,7 @@ class KotlinInvadersView(
             puTscore = 0
             Log.d(TAG, "Try send EXTRA $intent")
             startActivity(context, intent, null)
+            onFinishTemporaryDetach()
 
             prepareLevel()
         }
@@ -449,7 +450,7 @@ class KotlinInvadersView(
 
             // Draw the score and remaining lives
             // Change the brush color
-            paint.color = Color.argb(255, 255, 255, 255)
+            paint.color = Color.argb(255, 254, 254, 254)
             paint.textSize = 70f
             canvas.drawText(
                 "Score: $score   Lives: $lives Wave: " +
