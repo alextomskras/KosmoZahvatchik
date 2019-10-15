@@ -382,9 +382,9 @@ class KotlinInvadersView(
             puTscore = 0
             Log.d(TAG, "Try send EXTRA $intent")
             startActivity(context, intent, null)
-            onFinishTemporaryDetach()
 
-            prepareLevel()
+
+//            prepareLevel()
         }
     }
 
