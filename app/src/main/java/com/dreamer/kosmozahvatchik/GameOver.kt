@@ -11,9 +11,7 @@ import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.google.android.gms.ads.AdRequest
-import com.google.android.gms.ads.AdView
-import com.google.android.gms.ads.MobileAds
+import com.google.android.gms.ads.*
 import kotlinx.android.synthetic.main.activity_game_over.*
 
 
@@ -67,6 +65,8 @@ class GameOver : AppCompatActivity() {
     //    private val TAG = "GameOverActivity"
 //
     private lateinit var mAdView: AdView
+    private lateinit var mInterstitialAd: InterstitialAd
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -87,6 +87,38 @@ class GameOver : AppCompatActivity() {
             .addTestDevice("BA9723C4E9664D3AD0E7D0E39D3A4274")
             .build()
         mAdView.loadAd(adRequest)
+
+        // add interstishial admob
+        mInterstitialAd = InterstitialAd(this).apply {
+            //            adUnitId = "ca-app-pub-9051542338788579/2908902045"
+            adUnitId = getString(R.string.admob_interstishial_banner_ad)
+
+//        Toast.makeText(this, "mInterstitialAd.adUnitId", Toast.LENGTH_LONG).show()
+            adListener = object : AdListener() {
+                override fun onAdLoaded() {
+                    Toast.makeText(this@GameOver, "onAdLoaded()", Toast.LENGTH_SHORT).show()
+//                    mInterstitialAd.show()
+                }
+
+//                override fun onAdClosed() {
+//                    mInterstitialAd.loadAd(AdRequest.Builder().build())
+//                }
+
+                override fun onAdFailedToLoad(errorCode: Int) {
+                    Toast.makeText(
+                        this@GameOver,
+                        "onAdFailedToLoad() with error code: $errorCode",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
+            }
+        }
+        mInterstitialAd.loadAd(
+            AdRequest.Builder()
+                .addTestDevice(AdRequest.DEVICE_ID_EMULATOR)
+                .addTestDevice("BA9723C4E9664D3AD0E7D0E39D3A4274")
+                .build()
+        )
 
 
         // Play_MUSIC_on_gameover_screen
@@ -119,18 +151,32 @@ class GameOver : AppCompatActivity() {
         // while interacting with the UI.
         exit_button.setOnClickListener {
             Log.d(this.toString(), "Try to catch EXIT_GAME")
-
+            bigBanner()
             // launch the StartGAME activity somehow
             val intent = Intent(this, KotlinInvadersActivity::class.java)
             transFlow()
+
             mediaPlayer.stop()
             startActivity(intent)
+            finish()
         }
 
         mbuttonView = findViewById(R.id.fullscreen_content_controls)
         mgameoverView = findViewById(R.id.game_over_content)
         mHiscoreView = findViewById(R.id.txt_HI_you_score)
         mYourscoreView = findViewById(R.id.txt_gameover_you_score)
+
+    }
+
+    override fun onBackPressed() {
+        mInterstitialAd.loadAd(AdRequest.Builder().build())
+        bigBanner()
+        super.onBackPressed()
+
+    }
+
+    private fun bigBanner() {
+        mInterstitialAd.show()
 
     }
 
@@ -174,22 +220,15 @@ class GameOver : AppCompatActivity() {
 
     }
 
-    // This method executes when the player quits the game
-    override fun onPause() {
-
-
-        mediaPlayer.pause()
-        mediaPlayer.reset()
-        mediaPlayer.release()
-
-//        mediaPlayer.stop()
-        super.onPause()
-
-
-        // Tell the gameView pause method to execute
-//        kotlinInvadersView?.pause()
+    override fun finish() {
+        bigBanner()
+        super.finish()
     }
 
+    override fun onDestroy() {
+        bigBanner()
+        super.onDestroy()
+    }
 
     private fun toggle() {
         if (mVisible) {

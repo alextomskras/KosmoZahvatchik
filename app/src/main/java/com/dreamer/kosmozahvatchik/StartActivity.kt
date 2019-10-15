@@ -86,24 +86,25 @@ class StartActivity : AppCompatActivity() {
         mVisible = true
 
         MobileAds.initialize(this) { }
-
-        mAdView = findViewById(R.id.adView)
-//////        mAdView.adSize = AdSize.SMART_BANNER
-//////        mAdView.adUnitId = (R.string.admob_app_id).toString()
-        val adRequest = AdRequest.Builder()
-            .addTestDevice(AdRequest.DEVICE_ID_EMULATOR)
-            .addTestDevice("BA9723C4E9664D3AD0E7D0E39D3A4274")
-            .build()
-        mAdView.loadAd(adRequest)
+//
+//        mAdView = findViewById(R.id.adView)
+////////        mAdView.adSize = AdSize.SMART_BANNER
+////////        mAdView.adUnitId = (R.string.admob_app_id).toString()
+//        val adRequest = AdRequest.Builder()
+//            .addTestDevice(AdRequest.DEVICE_ID_EMULATOR)
+//            .addTestDevice("BA9723C4E9664D3AD0E7D0E39D3A4274")
+//            .build()
+//        mAdView.loadAd(adRequest)
 
 
         mInterstitialAd = InterstitialAd(this).apply {
-            adUnitId = "ca-app-pub-9051542338788579/2908902045"
+            //            adUnitId = "ca-app-pub-9051542338788579/2908902045"
+            adUnitId = getString(R.string.admob_interstishial_banner_ad)
 
 //        Toast.makeText(this, "mInterstitialAd.adUnitId", Toast.LENGTH_LONG).show()
             adListener = object : AdListener() {
                 override fun onAdLoaded() {
-                    Toast.makeText(this@StartActivity, "onAdLoaded()", Toast.LENGTH_SHORT).show()
+//                    Toast.makeText(this@StartActivity, "onAdLoaded()", Toast.LENGTH_SHORT).show()
 //                    mInterstitialAd.show()
                 }
 
@@ -122,11 +123,10 @@ class StartActivity : AppCompatActivity() {
         }
         mInterstitialAd.loadAd(
             AdRequest.Builder()
-//                .addTestDevice(AdRequest.DEVICE_ID_EMULATOR)
-//                .addTestDevice("BA9723C4E9664D3AD0E7D0E39D3A4274")
+                .addTestDevice(AdRequest.DEVICE_ID_EMULATOR)
+                .addTestDevice("BA9723C4E9664D3AD0E7D0E39D3A4274")
                 .build()
         )
-
 
         // Play_MUSIC_on_start_screen
         mediaPlayer = MediaPlayer.create(applicationContext, R.raw.start)
@@ -162,7 +162,7 @@ class StartActivity : AppCompatActivity() {
             // launch the StartGAME activity somehow
             val intent = Intent(this, KotlinInvadersActivity::class.java)
 
-
+//            bigBanner()
             mediaPlayer.stop()
 
 //            mInterstitialAd.adListener = object : AdListener() {
@@ -181,9 +181,13 @@ class StartActivity : AppCompatActivity() {
 //
 //                Log.d("TAG", "The interstitial wasn't loaded yet.")
 //            }
-//            transFlow()
+            transFlow()
+
             startActivity(intent)
+//            finish()
         }
+
+
         mcontentView = findViewById(R.id.fullscreen_content_controls)
         mloadingView = findViewById(R.id.fullscreen_content)
 
@@ -193,6 +197,17 @@ class StartActivity : AppCompatActivity() {
         // Retrieve and cache the system's default "short" animation time.
         shortAnimationDuration = resources.getInteger(android.R.integer.config_shortAnimTime)
 
+
+    }
+
+    private fun bigBanner() {
+        mInterstitialAd.show()
+
+    }
+
+    override fun onBackPressed() {
+        bigBanner()
+        super.onBackPressed()
 
     }
 
