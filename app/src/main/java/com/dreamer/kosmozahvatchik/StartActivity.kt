@@ -105,7 +105,7 @@ class StartActivity : AppCompatActivity() {
             adListener = object : AdListener() {
                 override fun onAdLoaded() {
 //                    Toast.makeText(this@StartActivity, "onAdLoaded()", Toast.LENGTH_SHORT).show()
-//                    mInterstitialAd.show()
+                    mInterstitialAd.show()
                 }
 
 //                override fun onAdClosed() {
@@ -118,6 +118,10 @@ class StartActivity : AppCompatActivity() {
                         "onAdFailedToLoad() with error code: $errorCode",
                         Toast.LENGTH_SHORT
                     ).show()
+                    Log.d(
+                        this@StartActivity.toString(),
+                        "onAdFailedToLoad() with error code: $errorCode"
+                    )
                 }
             }
         }
@@ -135,7 +139,7 @@ class StartActivity : AppCompatActivity() {
 //        mediaPlayer.setLooping(true)
 
         mediaPlayer.start()
-        Toast.makeText(this, "media playing", Toast.LENGTH_SHORT).show()
+//        Toast.makeText(this, "media playing", Toast.LENGTH_SHORT).show()
 
 //        var player = MediaPlayer()
 //        try {
@@ -162,7 +166,7 @@ class StartActivity : AppCompatActivity() {
             // launch the StartGAME activity somehow
             val intent = Intent(this, KotlinInvadersActivity::class.java)
 
-//            bigBanner()
+            bigBanner()
             mediaPlayer.stop()
 
 //            mInterstitialAd.adListener = object : AdListener() {
@@ -184,7 +188,7 @@ class StartActivity : AppCompatActivity() {
             transFlow()
 
             startActivity(intent)
-//            finish()
+            finish()
         }
 
 
@@ -330,7 +334,7 @@ class StartActivity : AppCompatActivity() {
          */
         private val AUTO_HIDE = true
 
-        /**
+        /**45
          * If [AUTO_HIDE] is set, the number of milliseconds to wait after
          * user interaction before hiding the system UI.
          */
